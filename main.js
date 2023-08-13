@@ -34,3 +34,17 @@ function initialize() {
   render();
 }
 
+function handleMove(evt) {
+  const idx = parseInt(evt.target.id.replace("box-", ""));
+  if (
+    isNaN(idx) ||
+    board[idx] ||
+    winner
+  )
+    return;
+  board[idx] = turn;
+  turn *= -1;
+  winner = getWinner();
+  render();
+}
+
