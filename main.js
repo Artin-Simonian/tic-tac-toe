@@ -1,15 +1,36 @@
-/*
-1) Define required constants
+const COLOR_LOOKUP = {
+  "1": "red",
+  "-1": "blue",
+  "null": "white",
+};
 
-2) Define required variables used to track the state of the game
+const winningCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
-3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant.
+let board;
+let winner;
+let turn;
 
-4) Upon loading the app should:
-  4.1) Initialize the state variables
-  4.2) Render those values to the page
-  4.3) Wait for the user to click a square
+const playerMessage = document.querySelector("h1");
+const btn = document.querySelector("button");
 
-5) Handle a player clicking a square
+document.getElementById("board").addEventListener("click", handleMove);
+btn.addEventListener("click", initialize);
 
-6) Handle a player clicking the replay button*/
+initialize();
+
+function initialize() {
+  board = [null, null, null, null, null, null, null, null, null];
+  turn = 1;
+  winner = null;
+  render();
+}
+
